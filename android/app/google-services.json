@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "200005330851",
+    "project_id": "auth-for-app-20da2",
+    "storage_bucket": "auth-for-app-20da2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200005330851:android:eec3dde695b6a3fabbdc16",
+        "android_client_info": {
+          "package_name": "com.example.loginapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBIEAmWHLme3G3rWtze1yrbE7OiUWNjzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200005330851:android:82c61e1146698d27bbdc16",
+        "android_client_info": {
+          "package_name": "com.example.todo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBIEAmWHLme3G3rWtze1yrbE7OiUWNjzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
