@@ -4,19 +4,36 @@ import 'package:loginapp/components/my_textfield.dart';
 import 'package:loginapp/components/square_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   //text editing controllers
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   //sign user in method
   void signUserIn() async {
+    //show loading circle to showDialog change stl to stf (cmd+.)
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+
+    //try sign in
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailController.text,
       password: passwordController.text,
     );
+    //pop the loading circle
+    Navigator.pop(context);
   }
 
   @override
