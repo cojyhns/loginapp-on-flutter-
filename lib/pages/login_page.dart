@@ -19,19 +19,18 @@ class _LoginPageState extends State<LoginPage> {
 
   //sign user in method
   void signUserIn() async {
-    //show loading circle to showDialog change stl to stf (cmd+.)
+    //show loading circle
     showDialog(
       context: context,
       builder: (context) {
         return const Center(child: CircularProgressIndicator());
       },
     );
-
-    //try sign in
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailController.text,
       password: passwordController.text,
     );
+
     //pop the loading circle
     Navigator.pop(context);
   }
