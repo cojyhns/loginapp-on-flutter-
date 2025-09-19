@@ -17,23 +17,42 @@ class _LoginPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   //sign user in method
   void signUserUp() async {
-    //show loading circle
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) {
         return const Center(child: CircularProgressIndicator());
       },
     );
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
-    );
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        Navigator.pop(context);
+        // TODO: Navigate to home page or show success
+      } else {
+        Navigator.pop(context);
+        showErrorMessage("Passwords don't match");
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      showErrorMessage(e.message ?? "Registration error");
+    }
+  }
 
-    //pop the loading circle
-    Navigator.pop(context);
+  void showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(title: Text(message));
+      },
+    );
   }
 
   @override
@@ -72,7 +91,7 @@ class _LoginPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 MyTextfield(
-                  controller: passwordController,
+                  controller: confirmPasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
                 ),
