@@ -4,22 +4,22 @@ import 'package:loginapp/components/my_textfield.dart';
 import 'package:loginapp/components/square_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  LoginPage({super.key, required this.onTap});
+  RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<RegisterPage> {
   //text editing controllers
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
 
   //sign user in method
-  void signUserIn() async {
+  void signUserUp() async {
     //show loading circle
     showDialog(
       context: context,
@@ -46,14 +46,14 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 25),
                 //logo
-                const Icon(Icons.lock, size: 100),
+                const Icon(Icons.lock, size: 50),
 
-                const SizedBox(height: 50),
-                //welcome back,you've been missed
+                const SizedBox(height: 25),
+                //lets create an account for you
                 Text(
-                  'Welcome back, you\'ve been missed!',
+                  'Let\'s create an account for you!',
                   style: TextStyle(color: Colors.grey[700], fontSize: 16),
                 ),
                 const SizedBox(height: 25),
@@ -68,6 +68,12 @@ class _LoginPageState extends State<LoginPage> {
                 MyTextfield(
                   controller: passwordController,
                   hintText: 'Password',
+                  obscureText: true,
+                ),
+                const SizedBox(height: 10),
+                MyTextfield(
+                  controller: passwordController,
+                  hintText: 'Confirm Password',
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),
@@ -86,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 25),
                 //sign in button
-                MyButton(text: "Sign in", onTap: signUserIn),
+                MyButton(text: "Sign up", onTap: signUserUp),
 
                 const SizedBox(height: 50),
                 //or continue with
@@ -126,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?',
+                      'Already have an account?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     SizedBox(width: 4),
@@ -135,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: GestureDetector(
                         onTap: widget.onTap,
                         child: const Text(
-                          'Register now',
+                          'Login now',
                           style: TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
